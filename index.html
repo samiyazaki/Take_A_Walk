@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Directions Service</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="module" src="index.js"></script>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <b>Start: </b>
+      <select id="start">
+        <option value= "Columbia University Visitors Center" >Columbia University</option>
+      </select>
+      <b>Length: </b>
+      <select id="end">
+        <option value="Statue of Liberty">Get F*cked</option>
+        <option value="Morningside Park">Short</option>
+        <option value="Riverside Church">Medium and confessional</option>
+        <option value="Conservatory Garden">Long</option>
+      </select>
+    </div>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDEcXU6u6I2VVF1Ir5oGx0oR_0TBc2xGI&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
