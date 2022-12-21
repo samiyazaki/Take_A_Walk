@@ -34,4 +34,29 @@ function initMap() {
   }
   
   window.initMap = initMap;
+
+  window.onSpotifyIframeApiReady = (IFrameAPI) => {
+    let element = document.getElementById('embed-iframe');
+    let options = {
+        uri: '6li5hO9q6mEiRCklRf7qHE'
+      };
+    let callback = (EmbedController) => {};
+    IFrameAPI.createController(element, options, callback);
+  };
   
+  let callback = (EmbedController) => {
+    document.querySelectorAll('ul#episodes > li > button').forEach(
+      playlist => {
+        playlist.addEventListener('click', () => {
+          // click event handler logic goes here
+        });
+      })
+  };
+  playlist.addEventListener('click', () => {
+    EmbedController.loadUri(playlist.dataset.spotifyId)
+  });
+  let options = {
+    width: '60%',
+    height: '200',
+    uri: '6li5hO9q6mEiRCklRf7qHE'
+  };

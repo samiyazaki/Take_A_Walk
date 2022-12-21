@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Directions Service</title>
+    <title>Take A Walk</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
@@ -21,7 +21,26 @@
       </select>
     </div>
     <div id="map"></div>
-
+    <ul id="episodes">
+        <li>
+          <button data-spotify-id="6li5hO9q6mEiRCklRf7qHE">
+            My Path to Spotify: Women in Engineering
+          </button>
+        </li>
+        <li>
+          <button data-spotify-id="spotify:episode:43cbJh4ccRD7lzM2730YK3">
+            What is Backstage?
+          </button>
+        </li>
+        <li>
+          <button data-spotify-id="spotify:episode:6I3ZzCxRhRkNqnQNo8AZPV">
+            Introducing Nerd Out@Spotify
+          </button>
+        </li>
+      </ul>
+    <div id="embed-iframe">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6li5hO9q6mEiRCklRf7qHE?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
     <!-- 
      The `defer` attribute causes the callback to execute after the full HTML
      document has been parsed. For non-blocking uses, avoiding race conditions,
@@ -32,5 +51,6 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDEcXU6u6I2VVF1Ir5oGx0oR_0TBc2xGI&callback=initMap&v=weekly"
       defer
     ></script>
+    <script src="https://open.spotify.com/embed-playlist/iframe-api/v1/4c0d56cc70e44376945711e9d8eee81f" async></script>
   </body>
 </html>
