@@ -97,7 +97,7 @@ function initMap() {
 
         const limit = 50;
 
-        const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US&limit=${limit}`, {
+        const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=en_US&limit=${limit}`, {
             method: 'GET',
             headers: { 'Authorization' : 'Bearer ' + token}
         });
@@ -118,6 +118,7 @@ function initMap() {
         const data = await result.json();
         return data.playlists.items;
     }
+
 
     // const _getTracks = async (token, tracksEndPoint) => {
 
@@ -186,7 +187,6 @@ const UIController = (function() {
                 playlist: document.querySelector(DOMElements.selectPlaylist),
                 tracks: document.querySelector(DOMElements.divSonglist),
                 submit: document.querySelector(DOMElements.buttonSubmit),
-                songDetail: document.querySelector(DOMElements.divSongDetail)
             }
         },
 
@@ -304,7 +304,7 @@ const APPController = (function(UICtrl, APICtrl) {
         // get track endpoint based on the selected playlist
         const tracksEndPoint = playlistSelect.options[playlistSelect.selectedIndex].value;
         // get the list of tracks
-        const tracks = await APICtrl.getTracks(token, tracksEndPoint);
+        const tracks = await APICtrl.getPlaylistByGenre(token, tracksEndPoint);
         // create a track list item
         tracks.forEach(el => UICtrl.createTrack(el.track.href, el.track.name))
         
