@@ -4,6 +4,7 @@
   }
   .container{
     height: 70px;
+    max-width: 100%;
   }
 header {
     text-align: center;
@@ -28,5 +29,8 @@ header {
     font-family: "Roboto", "sans-serif";
     line-height: 30px;
     padding-left: 10px;
+  }
+  .hidden {
+    display:none;
   }
   

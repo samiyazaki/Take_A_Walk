@@ -10,27 +10,27 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="module" src="index.js"></script>
   </head>
-  <header class="container mx-auto px-4">
+  <header class="container mx-auto border-0 rounded px-4 h-14 bg-gradient-to-r from-cyan-500 to-blue-500">
     <h1>Take a walk!</h1>
   </header>
   <body>
     <div id="floating-panel">
       <b>Start: </b>
       <select id="start">
-        <option value= "Columbia University Visitors Center" >Columbia University</option>
+        <option value= "Columbia University Visitors Center" >Your Location</option>
       </select>
       <b>Length: </b>
       <select id="end">
-        <option value="Statue of Liberty">Get F*cked</option>
         <option value="Morningside Park">Short</option>
-        <option value="Riverside Church">Medium and confessional</option>
+        <option value="Riverside Church">Medium</option>
         <option value="Conservatory Garden">Long</option>
+        <option value="Statue of Liberty">Get F*cked</option>
       </select>
     </div>
     <div id="map"></div>
-    <ul id="episodes">
+    <ul id="playlist">
         <li>
-          <button data-spotify-id="playlist_id:6li5hO9q6mEiRCklRf7qHE">
+          <button data-spotify-id="playlist_id:6li5hO9q6mEiRCklRf7qHE" class="btn-large border-2 border-double shadow-lg">
             My Path to Spotify: Women in Engineering
           </button>
         </li>
