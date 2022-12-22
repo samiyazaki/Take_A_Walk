@@ -1,11 +1,18 @@
-<html>
+<!DOCTYPE html>
+<html lang ="en">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Take A Walk</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
+    
+    
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="module" src="index.js"></script>
   </head>
+  <header class="container mx-auto px-4">
+    <h1>Take a walk!</h1>
+  </header>
   <body>
     <div id="floating-panel">
       <b>Start: </b>
@@ -51,6 +58,7 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDEcXU6u6I2VVF1Ir5oGx0oR_0TBc2xGI&callback=initMap&v=weekly"
       defer
     ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://open.spotify.com/embed-playlist/iframe-api/v1/4c0d56cc70e44376945711e9d8eee81f" async></script>
   </body>
 </html>
