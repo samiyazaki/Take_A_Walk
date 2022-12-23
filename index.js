@@ -312,7 +312,7 @@ const APPController = (function(UICtrl, APICtrl) {
     });
 
     // create song selection click event listener
-    DOMInputs.tracks.addEventListener('click', async (e) => {
+    DOMInputs.playlist.addEventListener('click', async (e) => {
         // prevent page reset
         e.preventDefault();
         UICtrl.resetTrackDetail();
