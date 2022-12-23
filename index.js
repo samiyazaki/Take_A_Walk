@@ -120,29 +120,29 @@ function initMap() {
     }
 
 
-    // const _getTracks = async (token, tracksEndPoint) => {
+    const _getTracks = async (token, tracksEndPoint) => {
 
-    //     const limit = 10;
+        const limit = 10;
 
-    //     const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
-    //         method: 'GET',
-    //         headers: { 'Authorization' : 'Bearer ' + token}
-    //     });
+        const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
 
-    //     const data = await result.json();
-    //     return data.items;
-    // }
+        const data = await result.json();
+        return data.items;
+    }
 
-    // const _getTrack = async (token, trackEndPoint) => {
+    const _getTrack = async (token, trackEndPoint) => {
 
-    //     const result = await fetch(`${trackEndPoint}`, {
-    //         method: 'GET',
-    //         headers: { 'Authorization' : 'Bearer ' + token}
-    //     });
+        const result = await fetch(`${trackEndPoint}`, {
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+        });
 
-    //     const data = await result.json();
-    //     return data;
-    // }
+        const data = await result.json();
+        return data;
+    }
 
     return {
         getToken() {
@@ -154,12 +154,12 @@ function initMap() {
         getPlaylistByGenre(token, genreId) {
             return _getPlaylistByGenre(token, genreId);
         },
-        // getTracks(token, tracksEndPoint) {
-        //     return _getTracks(token, tracksEndPoint);
-        // },
-        // getTrack(token, trackEndPoint) {
-        //     return _getTrack(token, trackEndPoint);
-        // }
+        getTracks(token, tracksEndPoint) {
+            return _getTracks(token, tracksEndPoint);
+        },
+        getTrack(token, trackEndPoint) {
+            return _getTrack(token, trackEndPoint);
+        }
     }
 })();
 
@@ -207,43 +207,30 @@ const UIController = (function() {
             document.querySelector(DOMElements.divSonglist).insertAdjacentHTML('beforeend', html);
         },
 
-        // need method to create the song detail
-        createTrackDetail(img, title, artist) {
+        // // need method to create the song detail
+        // createTrackDetail(img, title, artist) {
 
-            const detailDiv = document.querySelector(DOMElements.divSongDetail);
-            // any time user clicks a new song, we need to clear out the song detail div
-            detailDiv.innerHTML = '';
+        //     const detailDiv = document.querySelector(DOMElements.divSongDetail);
+        //     // any time user clicks a new song, we need to clear out the song detail div
+        //     detailDiv.innerHTML = '';
 
-            const html = 
-            `
-            <div class="row col-sm-12 px-0">
-                <img src="${img}" alt="">        
-            </div>
-            <div class="row col-sm-12 px-0">
-                <label for="Genre" class="form-label col-sm-12">${title}:</label>
-            </div>
-            <div class="row col-sm-12 px-0">
-                <label for="artist" class="form-label col-sm-12">By ${artist}:</label>
-            </div> 
-            `;
+        //     const html = 
+        //     `
+        //     <div class="row col-sm-12 px-0">
+        //         <img src="${img}" alt="">        
+        //     </div>
+        //     <div class="row col-sm-12 px-0">
+        //         <label for="Genre" class="form-label col-sm-12">${title}:</label>
+        //     </div>
+        //     <div class="row col-sm-12 px-0">
+        //         <label for="artist" class="form-label col-sm-12">By ${artist}:</label>
+        //     </div> 
+        //     `;
 
-            detailDiv.insertAdjacentHTML('beforeend', html)
-        },
+        //     detailDiv.insertAdjacentHTML('beforeend', html)
+        // },
 
-        resetTrackDetail() {
-            this.inputField().songDetail.innerHTML = '';
-        },
 
-        resetTracks() {
-            this.inputField().tracks.innerHTML = '';
-            this.resetTrackDetail();
-        },
-
-        resetPlaylist() {
-            this.inputField().playlist.innerHTML = '';
-            this.resetTracks();
-        },
-        
         storeToken(value) {
             document.querySelector(DOMElements.hfToken).value = value;
         },
@@ -276,27 +263,30 @@ const APPController = (function(UICtrl, APICtrl) {
 
     // create genre change event listener
     DOMInputs.genre.addEventListener('change', async () => {
-        //reset the playlist
-        UICtrl.resetPlaylist();
-        //get the token that's stored on the page
+        //get token that's stored on the page
         const token = UICtrl.getStoredToken().token;        
-        // get the genre select field
+        // get genre select field
         const genreSelect = UICtrl.inputField().genre;       
-        // get the genre id associated with the selected genre
+        // get  genre id associated with the selected genre
         const genreId = genreSelect.options[genreSelect.selectedIndex].value;             
-        // ge the playlist based on a genre
+        // ge  playlist based on a genre
         const playlist = await APICtrl.getPlaylistByGenre(token, genreId);       
         // create a playlist list item for every playlist returned
         playlist.forEach(p => UICtrl.createPlaylist(p.name, p.tracks.href));
     });
      
 
+    //
+    //
+    // 
+    //
+    //
+
     // create submit button click event listener
     DOMInputs.submit.addEventListener('click', async (e) => {
         // prevent page reset
         e.preventDefault();
         // clear tracks
-        UICtrl.resetTracks();
         //get the token
         const token = UICtrl.getStoredToken().token;        
         // get the playlist field
@@ -306,7 +296,18 @@ const APPController = (function(UICtrl, APICtrl) {
         // get the list of tracks
         const tracks = await APICtrl.getPlaylistByGenre(token, tracksEndPoint);
         // create a track list item
-        tracks.forEach(el => UICtrl.createTrack(el.track.href, el.track.name))
+        tracks.forEach(el => UICtrl.createTrack(el.track.href, el.track.name));
+
+        // create iframe url item
+        const iframeUrl = playlistSelect.options[playlistSelect.selectedIndex].href;
+
+        // create new iframe src attribute
+        var iframePlayer = document.getElementById('iframe-player');
+     // var src = iframePlayer.getAttribute('src');
+      
+      iframePlayer.setAttribute("src", iframeUrl);
+        // set src url in iframe div
+
         
     });
 
