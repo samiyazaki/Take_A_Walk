@@ -223,11 +223,13 @@ const APPController = (function(UICtrl, APICtrl) {
            
         // get the playlist title
         btn.innerHTML = playlistSelect;
+
         var pastChoice = document.getElementById("past-choice");
 
         pastChoice.appendChild(btn);
 
-        btn.setAttribute("class", "container");
+        btn.setAttribute("class", "container waves-effect waves-light hoverable btn-secondary");
+
     });
 
       // declaring selected playlist url globally
