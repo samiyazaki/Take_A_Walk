@@ -69,7 +69,8 @@ img {
 
 .btn-success:hover {
     background-color: #4daf64!important;
-    transition: 1s;
+    transform: scale(3.0);
+    transition: 2s ease-out;
 }
 
 img.track {
