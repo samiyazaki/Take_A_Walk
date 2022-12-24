@@ -269,10 +269,10 @@ const APPController = (function(UICtrl, APICtrl) {
         const genreSelect = UICtrl.inputField().genre;       
         // get  genre id associated with the selected genre
         const genreId = genreSelect.options[genreSelect.selectedIndex].value;             
-        // ge  playlist based on a genre
+        // get  playlist based on a genre
         const playlist = await APICtrl.getPlaylistByGenre(token, genreId);       
         // create a playlist list item for every playlist returned
-        playlist.forEach(p => UICtrl.createPlaylist(p.name, p.tracks.href));
+        playlist.forEach(p => UICtrl.createPlaylist(p.name, p.href));
     });
      
 
@@ -299,13 +299,15 @@ const APPController = (function(UICtrl, APICtrl) {
         tracks.forEach(el => UICtrl.createTrack(el.track.href, el.track.name));
 
         // create iframe url item
-        const iframeUrl = playlistSelect.options[playlistSelect.selectedIndex].href;
+        const iframeUrl = playlistSelect.href;
 
         // create new iframe src attribute
         var iframePlayer = document.getElementById('iframe-player');
      // var src = iframePlayer.getAttribute('src');
+
+        var playList_id = playlists.items[playlistSelect].id
       
-      iframePlayer.setAttribute("src", iframeUrl);
+      iframePlayer.setAttribute("src", "https://open.spotify.com/embed/playlist/" + playList_id + "?utm_source=generator");
         // set src url in iframe div
 
         
@@ -315,13 +317,12 @@ const APPController = (function(UICtrl, APICtrl) {
     DOMInputs.playlist.addEventListener('click', async (e) => {
         // prevent page reset
         e.preventDefault();
-        UICtrl.resetTrackDetail();
         // get the token
         const token = UICtrl.getStoredToken().token;
         // get the track endpoint
         const trackEndpoint = e.target.id;
         //get the track object
-        const track = await APICtrl.getTrack(token, trackEndpoint);
+   //     const track = await APICtrl.getTrack(token, trackEndpoint);
         // load the track details
         UICtrl.createTrackDetail(track.album.images[2].url, track.name, track.artists[0].name);
     });    

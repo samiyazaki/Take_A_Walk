@@ -17,6 +17,7 @@ header {
     margin: 0;
     padding: 0;
     background-image: url('pexels-dario-fernandez-ruz-6421668.jpg');
+    background-position: bottom 30% right 5%;
   }
   
   #floating-panel {
@@ -35,7 +36,6 @@ header {
     display:none;
   }
   
-
 
 
  
@@ -69,6 +69,7 @@ img {
 
 .btn-success:hover {
     background-color: #4daf64!important;
+    transition: 1s;
 }
 
 img.track {
