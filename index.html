@@ -8,7 +8,7 @@
     
     
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <script type="module" src="index.js"></script>
+    <script  src="index.js"></script>
   </head>
   <header class="container mx-auto border-0 rounded px-4 h-14 bg-gradient-to-r from-cyan-500 to-blue-500">
     <h1>Take a walk!</h1>
@@ -33,8 +33,11 @@
      The `defer` attribute causes the callback to execute after the full HTML
      document has been parsed. For non-blocking uses, avoiding race conditions,
      and consistent behavior across browsers, consider loading using Promises
-     with https://www -->   
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoZ7XIa6-hJQXva2WtTF62LFdetLs4o_Y&callback=initMap&v=weekly" defer ></script>
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoZ7XIa6-hJQXva2WtTF62LFdetLs4o_Y&callback=initMap&v=weekly"
+      defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script async src="https://open.spotify.com/embed-playlist/iframe-api/v1/4c0d56cc70e44376945711e9d8eee81f"></script>
   </body>
