@@ -1,35 +1,46 @@
-.btn.dropdown-toggle  {
-    width:150px;
-    text-align:left;
+.btn.dropdown-toggle {
+  width: 150px;
+  text-align: left;
+  align-content: center;
 }
 
 span.caret {
-    position: absolute;
-    left: 90%;
-    top: 45%;
+  position: absolute;
+  left: 90%;
+  top: 45%;
 }
 
 label {
-    padding-top:5px;
+  padding-top: 5px;
 }
 
 .form-label {
-    padding-left:0px !important;
+  padding-left: 0px !important;
 }
 
 img {
-    width:140px;
-    height:140px;
+  width: 140px;
+  height: 140px;
 }
 
 .btn-success {
-    background-color: #3b7d4a!important;
+  background-color: #3b7d4a !important;
 }
 
 .btn-success:hover {
-    background-color: #4daf64!important;
+  background-color: #4daf64 !important;
+  transform: scale(1.15);
+  transition: 0.25s ease-out;
 }
 
 img.track {
-    border: 1px solid #8a8a8a;
+  border: 1px solid #8a8a8a;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url("pexels-dario-fernandez-ruz-6421668.jpg");
+  background-position: bottom 30% right 5%;
 }

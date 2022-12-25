@@ -1,44 +1,54 @@
 <!DOCTYPE html>
-<html lang ="en">
+<html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Take A Walk</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    
-    
+
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <script  src="index.js"></script>
+    <script src="index.js"></script>
   </head>
-  <header class="container mx-auto border-0 rounded px-4 h-14 bg-gradient-to-r from-cyan-500 to-blue-500">
+  <header
+    class="container mx-auto border-0 rounded px-4 h-14 bg-gradient-to-r from-cyan-500 to-blue-500"
+  >
     <h1>Take a walk!</h1>
   </header>
   <body>
     <div id="floating-panel">
       <b>Start: </b>
       <select id="start">
-        <option value= "Columbia University Visitors Center" >Your Location</option>
+        <option value="Columbia University Visitors Center">
+          Your Location
+        </option>
       </select>
       <b>Length: </b>
       <select id="end">
         <option value="Morningside Park">Short</option>
         <option value="Riverside Church">Medium</option>
         <option value="Conservatory Garden">Long</option>
-        <option value="Statue of Liberty">Get F*cked</option>
+        <option value="Statue of Liberty">Better get a cab</option>
       </select>
     </div>
     <div id="map"></div>
-    <a href="mood.html" class="btn-large hoverable">Set the Mood!</a> 
+    <div class="btn-large mx-auto border-0 px-14 h-14 text-center">
+    <a href="mood.html" class="btn-large hoverable rounded bg-green-500">Set the Mood!</a>
+    </div>
     <!-- 
      The `defer` attribute causes the callback to execute after the full HTML
      document has been parsed. For non-blocking uses, avoiding race conditions,
      and consistent behavior across browsers, consider loading using Promises
      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
     -->
-    <script async
+    <script
+      async
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoZ7XIa6-hJQXva2WtTF62LFdetLs4o_Y&callback=initMap&v=weekly"
-      defer></script>
+      defer
+    ></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://open.spotify.com/embed-playlist/iframe-api/v1/4c0d56cc70e44376945711e9d8eee81f" async></script>
+    <script
+      src="https://open.spotify.com/embed-playlist/iframe-api/v1/4c0d56cc70e44376945711e9d8eee81f"
+      async
+    ></script>
   </body>
 </html>

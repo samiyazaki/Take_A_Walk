@@ -1,77 +1,37 @@
-
- #map {
-    height: 100%;
-  }
-  .container{
-    height: 70px;
-    max-width: 100%;
-  }
+#map {
+  height: 80%;
+}
+.container {
+  height: 70px;
+  max-width: 100%;
+}
 header {
-    text-align: center;
-    font-size: 2em;
-
-  }
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-image: url('pexels-dario-fernandez-ruz-6421668.jpg');
-    background-position: bottom 30% right 5%;
-  }
-  
-  #floating-panel {
-    top: 20px;
-    left: 25%;
-    z-index: 5;
-    background-color: #fff;
-    padding: 5px;
-    border: 1px solid #999;
-    text-align: center;
-    font-family: "Roboto", "sans-serif";
-    line-height: 30px;
-    padding-left: 10px;
-  }
-  .hidden {
-    display:none;
-  }
-
-
- 
-  .btn.dropdown-toggle  {
-    width:150px;
-    text-align:left;
+  text-align: center;
+  font-size: 2em;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-span.caret {
-    position: absolute;
-    left: 90%;
-    top: 45%;
+#floating-panel {
+  top: 20px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
 }
-
-label {
-    padding-top:5px;
+.hidden {
+  display: none;
 }
-
-.form-label {
-    padding-left:0px !important;
-}
-
-img {
-    width:140px;
-    height:140px;
-}
-
-.btn-success {
-    background-color: #3b7d4a!important;
-}
-
-.btn-success:hover {
-    background-color: #4daf64!important;
-    transform: scale(3.0);
-    transition: 2s ease-out;
-}
-
-img.track {
-    border: 1px solid #8a8a8a;
+.btn{
+   width: 100%;
+   height:20%;
 }
