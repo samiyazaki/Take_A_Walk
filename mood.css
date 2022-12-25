@@ -28,8 +28,18 @@ img {
 
 .btn-success:hover {
     background-color: #4daf64!important;
+    transform: scale(1.15);
+    transition: .25s ease-out;
 }
 
 img.track {
     border: 1px solid #8a8a8a;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url('pexels-dario-fernandez-ruz-6421668.jpg');
+  background-position: bottom 30% right 5%;
 }
