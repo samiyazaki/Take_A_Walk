@@ -241,6 +241,14 @@ const APPController = (function (UICtrl, APICtrl) {
     );
   });
 
+//   localStorage.setItem("moodMusicPreference", userSelection);
+//   console.log("userSelection");
+
+// const userSelection = localStorage.getItem("moodMusicPreference");
+//     document.getElementById("select_genre").value = userSelection;
+//  console.log("userSelection");
+ 
+
   // declaring selected playlist url globally
   // const tracksEndPoint = playlistSelect.options[playlistSelect.selectedIndex].value;
 
