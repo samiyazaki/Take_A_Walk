@@ -1,7 +1,7 @@
 .container-xl{
     background-color: whitesmoke;
     justify-content: center;
-
+    opacity: .8;
 }
 .btn.dropdown-toggle {
   width: 150px;
