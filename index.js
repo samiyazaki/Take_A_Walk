@@ -218,6 +218,25 @@ const APPController = (function (UICtrl, APICtrl) {
         iframeId +
         "?utm_source=generator"
     );
+//Saving the user selction by select_playlist to localStorage
+const userSelection = document.getElementById("select_playlist").value;
+localStorage.setItem("selectedPlaylist", userSelection);
+
+const selectedPlaylist = localStorage.getItem("selectedPlaylist");
+//Creating a button for the user to recall the selected playlist
+const button = document.createElement("button");
+button.innerText = selectedPlaylist;
+button.classList.add("btn", "btn-success");
+//can't figure out how to make the name of the playlist appear instead of it's link id
+document.getElementById("past-choice").appendChild(button);
+// Trying to JSON.stringify the past selections so they can be stored. It's not working properly
+const pastSelections = ["playlist1", "playlist2", "playlist3"];
+const pastSelectionsAsString = JSON.stringify(pastSelections);
+localStorage.setItem("pastSelections", pastSelectionsAsString);
+
+
+
+
     //
     //
     //
