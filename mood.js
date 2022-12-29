@@ -184,18 +184,8 @@ const APIController = (function () {
   //Creating a button for the user to recall the selected playlist
   const button = document.createElement("button");
   button.innerText = selectedPlaylist;
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  // 
+
+
   button.classList.add("btn", "btn-success");
   //can't figure out how to make the name of the playlist appear instead of it's link id
   document.getElementById("past-choice").appendChild(button);
@@ -203,6 +193,9 @@ const APIController = (function () {
   const pastSelections = ["playlist1", "playlist2", "playlist3"];
   const pastSelectionsAsString = JSON.stringify(pastSelections);
   localStorage.setItem("pastSelections", pastSelectionsAsString);
+
+  localStorage.setItem("selectedPlaylist", JSON.stringify(selectedPlaylist));
+  
   
   
   
@@ -253,5 +246,15 @@ const APIController = (function () {
     };
   })(UIController, APIController);
   
+  function crankThatSouljaBoy() {
+    if(localStorage.getItem("selectedPlaylist")) {
+      pastPlaylist = JSON.parse(localStorage.getItem("selectedPlaylist"));
+    
+
+      listArray();
+
+     
+      }
+    }
   //call a method to load the genres on page load
   APPController.init();
