@@ -33,4 +33,5 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     .catch((e) => window.alert("Directions request failed due to " + status));
 }
 
+
 window.initMap = initMap;
