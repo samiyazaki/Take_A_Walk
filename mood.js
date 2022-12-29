@@ -1,5 +1,4 @@
-// SPOTIFY API:::
-//
+// SPOTIFY API::
 
 const APIController = (function () {
     const clientId = "ead6fd1d003e499dad7f6403e4c7a14b";
