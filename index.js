@@ -219,13 +219,26 @@ const APPController = (function (UICtrl, APICtrl) {
         "?utm_source=generator"
     );
 //Saving the user selction by select_playlist to localStorage
-const userSelection = document.getElementById("select_playlist").value;
+const userSelection = document.getElementById("select_playlist").textContent;
+
 localStorage.setItem("selectedPlaylist", userSelection);
 
-const selectedPlaylist = localStorage.getItem("selectedPlaylist");
+const selectedPlaylist = playlistSelect.options[playlistSelect.selectedIndex].text;
 //Creating a button for the user to recall the selected playlist
 const button = document.createElement("button");
 button.innerText = selectedPlaylist;
+
+
+
+
+
+
+
+
+
+
+
+// 
 button.classList.add("btn", "btn-success");
 //can't figure out how to make the name of the playlist appear instead of it's link id
 document.getElementById("past-choice").appendChild(button);
