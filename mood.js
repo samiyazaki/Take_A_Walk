@@ -144,6 +144,7 @@ const APIController = (function () {
       playlist.forEach((p) => UICtrl.createPlaylist(p.name, p.href));
     });
   
+    
     // create submit button click event listener
     DOMInputs.submit.addEventListener("click", async (e) => {
       // prevent page reset
@@ -250,7 +251,7 @@ const APIController = (function () {
   function crankThatSouljaBoy() {
     if(localStorage.getItem("selectedPlaylist")) {
       pastPlaylist = JSON.parse(localStorage.getItem("selectedPlaylist"));
-    
+      console.log(selectedPlaylist);
 
       listArray();
 
