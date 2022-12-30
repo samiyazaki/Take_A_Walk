@@ -37,7 +37,7 @@ body {
 }
 .btn-success {
     background-color: #3b7d4a !important;
-    
+    width: 100%;
   }
   
   .btn-success:hover {
