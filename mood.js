@@ -195,12 +195,6 @@ const APIController = (function () {
   localStorage.setItem("pastSelections", pastSelectionsAsString);
 
   localStorage.setItem("selectedPlaylist", JSON.stringify(selectedPlaylist));
-  
-  
-  
-  
- 
-  
       //
       //
       //
@@ -213,15 +207,22 @@ const APIController = (function () {
   
       // get the playlist title
       btn.innerHTML = playlistSelect;
+   
+      // get the playlist URL
+      const playlistUrl = "https://open.spotify.com/playlist/" + playlistSelect;
+      
+      // set the href attribute of the button to the playlist URL
+      btn.href = playlistUrl;
+      btn.target = "_blank";
+      btn.classList.add("playlist-button");
+      // var pastChoice = document.getElementById("past-choice");
   
-      var pastChoice = document.getElementById("past-choice");
+      // pastChoice.appendChild(btn);
   
-      pastChoice.appendChild(btn);
-  
-      btn.setAttribute(
-        "class",
-        "container waves-effect waves-light hoverable btn-secondary"
-      );
+      // btn.setAttribute(
+      //   "class",
+      //   "container btn-success"
+      // );
     });
   
   //   localStorage.setItem("moodMusicPreference", userSelection);
