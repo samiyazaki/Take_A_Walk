@@ -31,11 +31,9 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       directionsRenderer.setDirections(response);
       const duration = response.routes[0].legs[0].duration;
       console.log(`Estimated travel time: ${duration.text}`);
-      
-    })
-    .catch((e) => window.alert("Directions request failed due to " + status));
-}
-const durationElement = document.getElementById("duration");
+      const durationElement = document.getElementById("duration");
       durationElement.innerHTML = `Estimated Travel Time: ${duration.text}`;
+    })
+}
 
 window.initMap = initMap;
