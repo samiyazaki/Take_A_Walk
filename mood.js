@@ -134,6 +134,10 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
   
     // create genre change event listener
     DOMInputs.genre.addEventListener("change", async () => {
+
+      // remove old playlists
+      $('#select_playlist').empty();
+
       const token = UICtrl.getStoredToken().token;
       // get genre select field
       const genreSelect = UICtrl.inputField().genre;
@@ -143,6 +147,22 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
       const playlist = await APICtrl.getPlaylistByGenre(token, genreId);
       // create a playlist list item for every playlist returned
       playlist.forEach((p) => UICtrl.createPlaylist(p.name, p.href))
+      
+      const _getPlaylistByGenre = async (token, genreId) => {
+        const limit = 50;
+    
+        const result = await fetch(
+          `https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`,
+          {
+            method: "GET",
+            headers: { Authorization: "Bearer " + token },
+          }
+        );
+    
+        const data = await result.json();
+
+        return data.playlists.items;
+      };
     });
   
     
