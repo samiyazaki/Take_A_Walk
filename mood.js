@@ -1,6 +1,8 @@
 // SPOTIFY API::
 
-const APIController = (function () {
+window.onSpotifyIframeApiReady = (TakeAWalk) => {
+  
+    const APIController = (function () {
     const clientId = "ead6fd1d003e499dad7f6403e4c7a14b";
     const clientSecret = "d680859a5f9e4353a3c87409a58dacc7";
   
@@ -132,7 +134,6 @@ const APIController = (function () {
   
     // create genre change event listener
     DOMInputs.genre.addEventListener("change", async () => {
-      //get token that's stored on the page
       const token = UICtrl.getStoredToken().token;
       // get genre select field
       const genreSelect = UICtrl.inputField().genre;
@@ -141,7 +142,7 @@ const APIController = (function () {
       // get  playlist based on a genre
       const playlist = await APICtrl.getPlaylistByGenre(token, genreId);
       // create a playlist list item for every playlist returned
-      playlist.forEach((p) => UICtrl.createPlaylist(p.name, p.href));
+      playlist.forEach((p) => UICtrl.createPlaylist(p.name, p.href))
     });
   
     
@@ -205,12 +206,12 @@ const APIController = (function () {
   //can't figure out how to make the name of the playlist appear instead of it's link id
   document.getElementById("past-choice").appendChild(button);
       
-    });
+    }
+  );
   
-
     return {
       init() {
-        console.log("App is starting");
+        console.log("Let's listen");
         loadGenres();
       },
     };
@@ -228,3 +229,5 @@ const APIController = (function () {
     }
   //call a method to load the genres on page load
   APPController.init();
+  
+}
