@@ -1,6 +1,8 @@
 // SPOTIFY API::
 
-const APIController = (function () {
+window.onSpotifyIframeApiReady = (TakeAWalk) => {
+  
+    const APIController = (function () {
     const clientId = "ead6fd1d003e499dad7f6403e4c7a14b";
     const clientSecret = "d680859a5f9e4353a3c87409a58dacc7";
   
@@ -132,7 +134,10 @@ const APIController = (function () {
   
     // create genre change event listener
     DOMInputs.genre.addEventListener("change", async () => {
-      //get token that's stored on the page
+
+      // remove old playlists
+      $('#select_playlist').empty();
+
       const token = UICtrl.getStoredToken().token;
       // get genre select field
       const genreSelect = UICtrl.inputField().genre;
@@ -141,7 +146,23 @@ const APIController = (function () {
       // get  playlist based on a genre
       const playlist = await APICtrl.getPlaylistByGenre(token, genreId);
       // create a playlist list item for every playlist returned
-      playlist.forEach((p) => UICtrl.createPlaylist(p.name, p.href));
+      playlist.forEach((p) => UICtrl.createPlaylist(p.name, p.href))
+      
+      const _getPlaylistByGenre = async (token, genreId) => {
+        const limit = 50;
+    
+        const result = await fetch(
+          `https://api.spotify.com/v1/browse/categories/${genreId}/playlists?limit=${limit}`,
+          {
+            method: "GET",
+            headers: { Authorization: "Bearer " + token },
+          }
+        );
+    
+        const data = await result.json();
+
+        return data.playlists.items;
+      };
     });
   
     
@@ -167,10 +188,10 @@ const APIController = (function () {
       );
   
       // create new iframe src attribute
-      var iframePlayer = document.getElementById("iframe-player");
+      const iframePlayer = document.getElementById("iframe-player");
   
       // set src in iframe to selected playlist
-      iframePlayer.setAttribute(
+     iframePlayer.setAttribute(
         "src",
         "https://open.spotify.com/embed/playlist/" +
           iframeId +
@@ -180,6 +201,7 @@ const APIController = (function () {
   const userSelection = document.getElementById("select_playlist").textContent;
   
   localStorage.setItem("selectedPlaylist", userSelection);
+  // localStorage.setItem("selectedPlaylist", iframeSrc);
   
   const selectedPlaylist = playlistSelect.options[playlistSelect.selectedIndex].text;
   //Creating a button for the user to recall the selected playlist
@@ -187,62 +209,29 @@ const APIController = (function () {
   button.innerText = selectedPlaylist;
 
 
-  button.classList.add("btn", "btn-success");
+    button.classList.add("btn", "btn-success");
+    button.setAttribute("src", "https://open.spotify.com/embed/playlist/" +
+  iframeId +
+  "?utm_source=generator");
+
+    // button event listener to switch iframe src url to saved url as data-attribute
+  button.addEventListener("click", async (e) => {
+    // prevent page reset
+    e.preventDefault();
+    //get the token
+    const token = UICtrl.getStoredToken().token;
+    iframePlayer.setAttribute("src", "https://open.spotify.com/embed/playlist/" +
+    iframeId +
+    "?utm_source=generator")});
   //can't figure out how to make the name of the playlist appear instead of it's link id
   document.getElementById("past-choice").appendChild(button);
-  // Trying to JSON.stringify the past selections so they can be stored. It's not working properly
-  const pastSelections = ["playlist1", "playlist2", "playlist3"];
-  const pastSelectionsAsString = JSON.stringify(pastSelections);
-  localStorage.setItem("pastSelections", pastSelectionsAsString);
-
-  localStorage.setItem("selectedPlaylist", JSON.stringify(selectedPlaylist));
-      //
-      //
-      //
-      //
-      //Local Storage Past Playlist Buttons:::
-      //
-      //
-      // creating button for previous selections
-      const btn = document.createElement("BUTTON");
-  
-      // get the playlist title
-      btn.innerHTML = playlistSelect;
-   
-      // get the playlist URL
-      const playlistUrl = "https://open.spotify.com/playlist/" + playlistSelect;
       
-      // set the href attribute of the button to the playlist URL
-      btn.href = playlistUrl;
-      btn.target = "_blank";
-      btn.classList.add("playlist-button");
-      // var pastChoice = document.getElementById("past-choice");
-  
-      // pastChoice.appendChild(btn);
-  
-      // btn.setAttribute(
-      //   "class",
-      //   "container btn-success"
-      // );
-    });
-  
-  //   localStorage.setItem("moodMusicPreference", userSelection);
-  //   console.log("userSelection");
-  
-  // const userSelection = localStorage.getItem("moodMusicPreference");
-  //     document.getElementById("select_genre").value = userSelection;
-  //  console.log("userSelection");
-   
-  
-    // declaring selected playlist url globally
-    // const tracksEndPoint = playlistSelect.options[playlistSelect.selectedIndex].value;
-  
-    // double checking it works
-    // console.log(tracksEndPoint);
+    }
+  );
   
     return {
       init() {
-        console.log("App is starting");
+        console.log("Let's listen");
         loadGenres();
       },
     };
@@ -260,3 +249,5 @@ const APIController = (function () {
     }
   //call a method to load the genres on page load
   APPController.init();
+  
+}
