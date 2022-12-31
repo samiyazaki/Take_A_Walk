@@ -192,7 +192,7 @@ const APIController = (function () {
     button.setAttribute("src", "https://open.spotify.com/embed/playlist/" +
   iframeId +
   "?utm_source=generator");
-  
+
     // button event listener to switch iframe src url to saved url as data-attribute
   button.addEventListener("click", async (e) => {
     // prevent page reset
@@ -204,56 +204,10 @@ const APIController = (function () {
     "?utm_source=generator")});
   //can't figure out how to make the name of the playlist appear instead of it's link id
   document.getElementById("past-choice").appendChild(button);
-  // Trying to JSON.stringify the past selections so they can be stored. It's not working properly
-  const pastSelections = ["playlist1", "playlist2", "playlist3"];
-  const pastSelectionsAsString = JSON.stringify(pastSelections);
-  localStorage.setItem("pastSelections", pastSelectionsAsString);
-
-  localStorage.setItem("selectedPlaylist", JSON.stringify(selectedPlaylist));
-      //
-      //
-      //
-      //
-      //Local Storage Past Playlist Buttons:::
-      //
-      //
-      // creating button for previous selections
-      const btn = document.createElement("BUTTON");
-  
-      // get the playlist title
-      btn.innerHTML = playlistSelect;
-   
-      // get the playlist URL
-      const playlistUrl = "https://open.spotify.com/playlist/" + playlistSelect;
       
-      // set the href attribute of the button to the playlist URL
-      btn.href = playlistUrl;
-      btn.target = "_blank";
-      btn.classList.add("playlist-button");
-      // var pastChoice = document.getElementById("past-choice");
-  
-      // pastChoice.appendChild(btn);
-  
-      // btn.setAttribute(
-      //   "class",
-      //   "container btn-success"
-      // );
     });
   
-  //   localStorage.setItem("moodMusicPreference", userSelection);
-  //   console.log("userSelection");
-  
-  // const userSelection = localStorage.getItem("moodMusicPreference");
-  //     document.getElementById("select_genre").value = userSelection;
-  //  console.log("userSelection");
-   
-  
-    // declaring selected playlist url globally
-    // const tracksEndPoint = playlistSelect.options[playlistSelect.selectedIndex].value;
-  
-    // double checking it works
-    // console.log(tracksEndPoint);
-  
+
     return {
       init() {
         console.log("App is starting");
