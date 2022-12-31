@@ -167,10 +167,10 @@ const APIController = (function () {
       );
   
       // create new iframe src attribute
-      var iframePlayer = document.getElementById("iframe-player");
+      const iframePlayer = document.getElementById("iframe-player");
   
       // set src in iframe to selected playlist
-      iframePlayer.setAttribute(
+     iframePlayer.setAttribute(
         "src",
         "https://open.spotify.com/embed/playlist/" +
           iframeId +
@@ -180,6 +180,7 @@ const APIController = (function () {
   const userSelection = document.getElementById("select_playlist").textContent;
   
   localStorage.setItem("selectedPlaylist", userSelection);
+  // localStorage.setItem("selectedPlaylist", iframeSrc);
   
   const selectedPlaylist = playlistSelect.options[playlistSelect.selectedIndex].text;
   //Creating a button for the user to recall the selected playlist
@@ -187,7 +188,20 @@ const APIController = (function () {
   button.innerText = selectedPlaylist;
 
 
-  button.classList.add("btn", "btn-success");
+    button.classList.add("btn", "btn-success");
+    button.setAttribute("src", "https://open.spotify.com/embed/playlist/" +
+  iframeId +
+  "?utm_source=generator");
+  
+    // button event listener to switch iframe src url to saved url as data-attribute
+  button.addEventListener("click", async (e) => {
+    // prevent page reset
+    e.preventDefault();
+    //get the token
+    const token = UICtrl.getStoredToken().token;
+    iframePlayer.setAttribute("src", "https://open.spotify.com/embed/playlist/" +
+    iframeId +
+    "?utm_source=generator")});
   //can't figure out how to make the name of the playlist appear instead of it's link id
   document.getElementById("past-choice").appendChild(button);
   // Trying to JSON.stringify the past selections so they can be stored. It's not working properly
