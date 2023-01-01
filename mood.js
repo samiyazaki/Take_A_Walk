@@ -20,7 +20,15 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
       const data = await result.json();
       return data.access_token;
     };
-  
+    function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/" + "; SameSite=None; Secure";
+    }
     const _getGenres = async (token) => {
       const limit = 50;
 
@@ -67,6 +75,13 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
     };
   })();
   
+  const DOMElements = {
+    selectGenre: "#select_genre",
+    selectPlaylist: "#select_playlist",
+    buttonSubmit: "#btn_submit",
+    divSongDetail: "#song-detail",
+    hfToken: "#hidden_token",
+  };
   // UI Module
   const UIController = (function () {
     //object to hold references to html selectors
@@ -263,7 +278,7 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
     let storedGenres = localStorage.getItem("genres");
   
     // Check if the list of genres is stored in localStorage
-    if (storedGenres) {
+    if (storedGenres !== undefined) {
       // Parse the stored genres as JSON
       storedGenres = JSON.parse(storedGenres);
   
@@ -291,7 +306,7 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
     }
   });
   
-  document.querySelector(DOMz.inputField()).onsubmit.addEventListener("click", async function () {
+  document.querySelector(DOMElements.buttonSubmit).addEventListener("click", async function () {
     // Get the token
     const token = await APIController.getToken();
   
@@ -320,48 +335,31 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
   //     }
   //   }
   //call a method to load the genres on page load
-<<<<<<< Updated upstream
   const playlistButtons = document.querySelectorAll('.playlist-button');
-  const pastSelections = document.querySelector('#past-selections');
+  const pastSelectionsContainer = document.querySelector('#past-selections');
+  const pastSelectionsDiv = document.getElementById('past-selections');
+  const handlePlaylistButtonClick = (event) => {
+    const playlistUrl = event.target.getAttribute('data-playlist-url');
+    pastSelectionsDiv.innerHTML +=`<div>${playlistUrl}</div>`;
+    localStorage.setItem('pastSelections', pastSelectionsDiv.innerHTML);
   
-  // Add event listeners to each playlist button
+  };
+  // Add click event listeners to the playlist buttons
   playlistButtons.forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', e => {
       // Get the playlist URL from the button's data attribute
-      const playlistUrl = button.getAttribute('data-playlist-url');
+      const playlistUrl = e.target.dataset.playlistUrl;
   
-      // Add the playlist URL to local storage
-      let pastUrls = localStorage.getItem('pastUrls');
-      if (pastUrls) {
-        pastUrls = JSON.parse(pastUrls);
-      } else {
-        pastUrls = [];
-      }
-      pastUrls.unshift(playlistUrl);
-      pastUrls = pastUrls.slice(0, 10); // Keep a maximum of 10 URLs
-      localStorage.setItem('pastUrls', JSON.stringify(pastUrls));
+      // Save the playlist URL to local storage
+      localStorage.setItem('lastPlaylistSelection', playlistUrl);
   
-      // Update the past selections list
-      pastSelections.innerHTML = ''; // Clear the list
-      pastUrls.forEach(url => {
-        const li = document.createElement('li');
-        li.textContent = url;
-        pastSelections.appendChild(li);
-      });
+      // Update the list of past selections
+      const playlistSelectionItem = document.createElement('div');
+      playlistSelectionItem.innerText = playlistUrl;
+      pastSelectionsContainer.appendChild(playlistSelectionItem);
     });
   });
   
-  // Update the past selections list on page load
-  let pastUrls = localStorage.getItem('pastUrls');
-  if (pastUrls) {
-    pastUrls = JSON.parse(pastUrls);
-    pastSelections.innerHTML = ''; // Clear the list
-    pastUrls.forEach(url => {
-      const li = document.createElement('li');
-      li.textContent = url;
-      pastSelections.appendChild(li);
-    });
-  }
   // On page load, retrieve the last playlist selection from local storage
   // and display it in the list of past selections
   const lastPlaylistSelection = localStorage.getItem('lastPlaylistSelection');
@@ -371,8 +369,6 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
     pastSelectionsContainer.appendChild(playlistSelectionItem);
   }
   
-=======
->>>>>>> Stashed changes
   APPController.init();
   
 }
