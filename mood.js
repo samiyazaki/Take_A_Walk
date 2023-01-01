@@ -320,6 +320,7 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
   //     }
   //   }
   //call a method to load the genres on page load
+<<<<<<< Updated upstream
   const playlistButtons = document.querySelectorAll('.playlist-button');
   const pastSelections = document.querySelector('#past-selections');
   
@@ -370,6 +371,8 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
     pastSelectionsContainer.appendChild(playlistSelectionItem);
   }
   
+=======
+>>>>>>> Stashed changes
   APPController.init();
   
 }
