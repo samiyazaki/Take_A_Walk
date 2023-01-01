@@ -334,7 +334,47 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
      
   //     }
   //   }
-  //call a method to load the genres on page load
+  const playlistButtons = document.querySelectorAll('.playlist-button');
+  const pastSelections = document.querySelector('#past-selections');
+  
+  // Add event listeners to each playlist button
+  playlistButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Get the playlist URL from the button's data attribute
+      const playlistUrl = button.getAttribute('data-playlist-url');
+  
+      // Add the playlist URL to local storage
+      let pastUrls = localStorage.getItem('pastUrls');
+      if (pastUrls) {
+        pastUrls = JSON.parse(pastUrls);
+      } else {
+        pastUrls = [];
+      }
+      pastUrls.unshift(playlistUrl);
+      pastUrls = pastUrls.slice(0, 10); // Keep a maximum of 10 URLs
+      localStorage.setItem('pastUrls', JSON.stringify(pastUrls));
+  
+      // Update the past selections list
+      pastSelections.innerHTML = ''; // Clear the list
+      pastUrls.forEach(url => {
+        const li = document.createElement('li');
+        li.textContent = url;
+        pastSelections.appendChild(li);
+      });
+    });
+  });
+  
+  // Update the past selections list on page load
+  let pastUrls = localStorage.getItem('pastUrls');
+  if (pastUrls) {
+    pastUrls = JSON.parse(pastUrls);
+    pastSelections.innerHTML = ''; // Clear the list
+    pastUrls.forEach(url => {
+      const li = document.createElement('li');
+      li.textContent = url;
+      pastSelections.appendChild(li);
+    });
+  }
   APPController.init();
   
 }
