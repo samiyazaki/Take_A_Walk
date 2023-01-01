@@ -20,10 +20,18 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
       const data = await result.json();
       return data.access_token;
     };
-  
+    function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/" + "; SameSite=None; Secure";
+    }
     const _getGenres = async (token) => {
       const limit = 50;
-  
+
       const result = await fetch(
         `https://api.spotify.com/v1/browse/categories?locale=en_US&limit=${limit}`,
         {
@@ -67,6 +75,13 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
     };
   })();
   
+  const DOMElements = {
+    selectGenre: "#select_genre",
+    selectPlaylist: "#select_playlist",
+    buttonSubmit: "#btn_submit",
+    divSongDetail: "#song-detail",
+    hfToken: "#hidden_token",
+  };
   // UI Module
   const UIController = (function () {
     //object to hold references to html selectors
@@ -236,17 +251,89 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
       },
     };
   })(UIController, APIController);
-  
-  function crankThatSouljaBoy() {
-    if(localStorage.getItem("selectedPlaylist")) {
-      pastPlaylist = JSON.parse(localStorage.getItem("selectedPlaylist"));
-      console.log(selectedPlaylist);
+ 
 
-      listArray();
+  // window.addEventListener("load", async function() {
+  //   let storedGenres = localStorage.getItem("genres");
+
+  //   if (storedGenres) {
+  //     storedGenres=JSON.parse(storedGenres);
+  //     storedGenres.forEach((genre) =>  {
+  //       UIController.createGenre(genre.name, genre.id);
+  //     });
+  //   } else {
+  //     const token = await APIController.getToken();
+  //     UIController.storeToken(token);
+  //     const genres = await APIController.getGenres(token);
+  //     localStorage.setItem("genres", JSON.stringify(genres));
+  //     genres.forEach((genre) => {
+  //       UIController.createGenre(genre.name, genre.id);
+  //     });
+  //   }
+  // });
+
+  // Event listeners
+  window.addEventListener("load", async function () {
+    // Retrieve the list of genres from localStorage
+    let storedGenres = localStorage.getItem("genres");
+  
+    // Check if the list of genres is stored in localStorage
+    if (storedGenres !== undefined) {
+      // Parse the stored genres as JSON
+      storedGenres = JSON.parse(storedGenres);
+  
+      // Populate the select list with the stored genres
+      storedGenres.forEach((genre) => {
+        UIController.createGenre(genre.name, genre.id);
+      });
+    } else {
+      // Get the token
+      const token = await APIController.getToken();
+  
+      // Store the token in localStorage
+      UIController.storeToken(token);
+  
+      // Get the list of genres from the Spotify API
+      const genres = await APIController.getGenres(token);
+  
+      // Store the list of genres in localStorage
+      localStorage.setItem("genres", JSON.stringify(genres));
+  
+      // Populate the select list with the genres
+      genres.forEach((genre) => {
+        UIController.createGenre(genre.name, genre.id);
+      });
+    }
+  });
+  
+  document.querySelector(DOMElements.buttonSubmit).addEventListener("click", async function () {
+    // Get the token
+    const token = await APIController.getToken();
+  
+    // Store the token in localStorage
+    UIController.storeToken(token);
+  
+    // Get the selected genre and playlist
+    const selectedGenre = UIController.inputField().genre.value;
+    const selectedPlaylist = UIController.inputField().playlist.value;
+  
+    // Get the playlist by genre
+    const playlistByGenre = await APIController.getPlaylistByGenre(
+      token,
+      selectedGenre
+    );
+    // ...
+  });
+  // function crankThatSouljaBoy() {
+  //   if(localStorage.getItem("selectedPlaylist")) {
+  //     pastPlaylist = JSON.parse(localStorage.getItem("selectedPlaylist"));
+  //     console.log(selectedPlaylist);
+
+  //     listArray();
 
      
-      }
-    }
+  //     }
+  //   }
   //call a method to load the genres on page load
   APPController.init();
   
