@@ -20,15 +20,7 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
       const data = await result.json();
       return data.access_token;
     };
-    function setCookie(name, value, days) {
-      let expires = "";
-      if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-        expires = "; expires=" + date.toUTCString();
-      }
-      document.cookie = name + "=" + (value || "") + expires + "; path=/" + "; SameSite=None; Secure";
-    }
+  
     const _getGenres = async (token) => {
       const limit = 50;
 
@@ -75,13 +67,6 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
     };
   })();
   
-  const DOMElements = {
-    selectGenre: "#select_genre",
-    selectPlaylist: "#select_playlist",
-    buttonSubmit: "#btn_submit",
-    divSongDetail: "#song-detail",
-    hfToken: "#hidden_token",
-  };
   // UI Module
   const UIController = (function () {
     //object to hold references to html selectors
@@ -278,7 +263,7 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
     let storedGenres = localStorage.getItem("genres");
   
     // Check if the list of genres is stored in localStorage
-    if (storedGenres !== undefined) {
+    if (storedGenres) {
       // Parse the stored genres as JSON
       storedGenres = JSON.parse(storedGenres);
   
@@ -306,7 +291,7 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
     }
   });
   
-  document.querySelector(DOMElements.buttonSubmit).addEventListener("click", async function () {
+  document.querySelector(DOMz.inputField()).onsubmit.addEventListener("click", async function () {
     // Get the token
     const token = await APIController.getToken();
   
@@ -335,6 +320,7 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
   //     }
   //   }
   //call a method to load the genres on page load
+<<<<<<< Updated upstream
   const playlistButtons = document.querySelectorAll('.playlist-button');
   const pastSelections = document.querySelector('#past-selections');
   
@@ -385,6 +371,8 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
     pastSelectionsContainer.appendChild(playlistSelectionItem);
   }
   
+=======
+>>>>>>> Stashed changes
   APPController.init();
   
 }
