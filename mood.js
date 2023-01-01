@@ -334,47 +334,41 @@ window.onSpotifyIframeApiReady = (TakeAWalk) => {
      
   //     }
   //   }
+  //call a method to load the genres on page load
   const playlistButtons = document.querySelectorAll('.playlist-button');
-  const pastSelections = document.querySelector('#past-selections');
+  const pastSelectionsContainer = document.querySelector('#past-selections');
+  const pastSelectionsDiv = document.getElementById('past-selections');
+  const handlePlaylistButtonClick = (event) => {
+    const playlistUrl = event.target.getAttribute('data-playlist-url');
+    pastSelectionsDiv.innerHTML +=`<div>${playlistUrl}</div>`;
+    localStorage.setItem('pastSelections', pastSelectionsDiv.innerHTML);
   
-  // Add event listeners to each playlist button
+  };
+  // Add click event listeners to the playlist buttons
   playlistButtons.forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', e => {
       // Get the playlist URL from the button's data attribute
-      const playlistUrl = button.getAttribute('data-playlist-url');
+      const playlistUrl = e.target.dataset.playlistUrl;
   
-      // Add the playlist URL to local storage
-      let pastUrls = localStorage.getItem('pastUrls');
-      if (pastUrls) {
-        pastUrls = JSON.parse(pastUrls);
-      } else {
-        pastUrls = [];
-      }
-      pastUrls.unshift(playlistUrl);
-      pastUrls = pastUrls.slice(0, 10); // Keep a maximum of 10 URLs
-      localStorage.setItem('pastUrls', JSON.stringify(pastUrls));
+      // Save the playlist URL to local storage
+      localStorage.setItem('lastPlaylistSelection', playlistUrl);
   
-      // Update the past selections list
-      pastSelections.innerHTML = ''; // Clear the list
-      pastUrls.forEach(url => {
-        const li = document.createElement('li');
-        li.textContent = url;
-        pastSelections.appendChild(li);
-      });
+      // Update the list of past selections
+      const playlistSelectionItem = document.createElement('div');
+      playlistSelectionItem.innerText = playlistUrl;
+      pastSelectionsContainer.appendChild(playlistSelectionItem);
     });
   });
   
-  // Update the past selections list on page load
-  let pastUrls = localStorage.getItem('pastUrls');
-  if (pastUrls) {
-    pastUrls = JSON.parse(pastUrls);
-    pastSelections.innerHTML = ''; // Clear the list
-    pastUrls.forEach(url => {
-      const li = document.createElement('li');
-      li.textContent = url;
-      pastSelections.appendChild(li);
-    });
+  // On page load, retrieve the last playlist selection from local storage
+  // and display it in the list of past selections
+  const lastPlaylistSelection = localStorage.getItem('lastPlaylistSelection');
+  if (lastPlaylistSelection) {
+    const playlistSelectionItem = document.createElement('div');
+    playlistSelectionItem.innerText = lastPlaylistSelection;
+    pastSelectionsContainer.appendChild(playlistSelectionItem);
   }
+  
   APPController.init();
   
 }
