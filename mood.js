@@ -301,4 +301,31 @@ if (lastPlaylistSelection) {
   const playlistSelectionItem = document.createElement('div');
   playlistSelectionItem.innerText = lastPlaylistSelection;
   pastSelectionsContainer.appendChild(playlistSelectionItem);
+};
+// retrieve list items from local storage and store in a variable
+let playlistSelections = JSON.parse(localStorage.getItem("playlistSelections"));
+
+// loop through the playlist selections
+for (let i = 0; i < playlistSelections.length; i++) {
+  // get the current playlist selection
+  let playlistSelection = playlistSelections[i];
+
+  // create a new button element
+  let button = document.createElement("button");
+
+  // set the text of the button to be the name of the playlist
+  button.textContent = playlistSelection.name;
+
+  // set the value of the data-playlist-url attribute to be the playlist's URL
+  button.setAttribute("data-playlist-url", playlistSelection.url);
+
+  // add an event listener to the button that will open the playlist in an embedded Spotify player when clicked
+  button.addEventListener("click", function() {
+    let url = this.getAttribute("data-playlist-url");
+    let iframe = `<iframe src="https://open.spotify.com/embed/playlist/${url}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
+    document.getElementById("playlist-player").innerHTML = iframe;
+  });
+
+  // append the button to the page
+  document.getElementById("playlist-buttons").appendChild(button);
 }
