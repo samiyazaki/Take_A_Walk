@@ -34,6 +34,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       const durationElement = document.getElementById("duration");
       durationElement.innerHTML = `Estimated Travel Time: ${duration.text}`;
     })
-}
+};
 
 window.initMap = initMap;
