@@ -1,4 +1,4 @@
-.container-xl{
+.container-xl{ 
     background-color: whitesmoke;
     justify-content: center;
     opacity: .8;
@@ -58,3 +58,4 @@ body {
   justify-content: center; 
   align-items: center; 
 }
+/* This makes it pretty, what else? */
