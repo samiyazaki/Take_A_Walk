@@ -6,7 +6,12 @@
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=samiyazaki" alt="samiyazaki" /></a> </p>
 
 - 🔭 We're currently working on [Take_A_Walk](https://github.com/samiyazaki/Take_A_Walk)
+<img src="assets\Take a Walk.gif" alt="GIF of a website where you can take two things you aren't used to doing and smash them together"></a>
 
+## This is a build of our website called "Take A Walk" which provides the client with both a route to walk and a Spotify playlist to match or improve your moods.
+## The user starts with the option to select a walk duration from the drop down menu. The user can select Short, Medium, Long and the estimated walk time is displayed as well as a route on the map. When the user has determined an appropriate route they can select the button on the bottom of the screen to go to the Mood page.
+## On the mood page, the user is first presented with the option to choose a genre and then a playlist. Once they hit the set button, the playlist is generated and the user can then hit play and enjoy an auto curated playlist directly from Spotify. If the user decides that they want to instead take a playlist on the road, they can select one of the four mood buttons which will generate an address/key that the user can copy and paste into their web browser to take their music on the go.
+## This project is an example of how to utilize multiple APIs for a singular purpose, entertainment. If you are frustrated and need to get away, a playlist and a good walking route will provide you with a fantastic way to blow off some steam or set yourself up for victory.
 - 🌱 We're currently learning **javaScript, CSS, HTML, Tailwind, JQuery, APIs and Git commands**
 
 - 👨‍💻 All of our projects are available at [https://github.com/samiyazaki](https://github.com/samiyazaki)
