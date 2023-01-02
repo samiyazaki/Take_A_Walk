@@ -1,7 +1,7 @@
 //Google Maps API
 
 function initMap() {
-  const directionsService = new google.maps.DirectionsService();  // Setting up the map, centered on Columbia university. The future will label the data as the users location
+  const directionsService = new google.maps.DirectionsService(); // Setting up the map, centered on Columbia university. The future will label the data as the users location
   const directionsRenderer = new google.maps.DirectionsRenderer();
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 15,
@@ -14,7 +14,7 @@ function initMap() {
     calculateAndDisplayRoute(directionsService, directionsRenderer); // Sets up the route calculation
   };
 
-  document.getElementById("start").addEventListener("change", onChangeHandler); 
+  document.getElementById("start").addEventListener("change", onChangeHandler);
   document.getElementById("end").addEventListener("change", onChangeHandler); //Changes tbe data based on changing the option from the dropdown list
 }
 
@@ -35,7 +35,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       console.log(`Estimated travel time: ${duration.text}`);
       const durationElement = document.getElementById("duration");
       durationElement.innerHTML = `Estimated Travel Time: ${duration.text}`;
-    })
-};
+    });
+}
 
 window.initMap = initMap;
