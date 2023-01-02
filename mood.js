@@ -294,6 +294,7 @@ if (pastUrls) {
   });
 }
 
+
 // On page load, retrieve the last playlist selection from local storage
 // and display it in the list of past selections
 const lastPlaylistSelection = localStorage.getItem('lastPlaylistSelection');
@@ -301,7 +302,7 @@ if (lastPlaylistSelection) {
   const playlistSelectionItem = document.createElement('div');
   playlistSelectionItem.innerText = lastPlaylistSelection;
   pastSelectionsContainer.appendChild(playlistSelectionItem);
-};
+}
 // retrieve list items from local storage and store in a variable
 let playlistSelections = JSON.parse(localStorage.getItem("playlistSelections"));
 

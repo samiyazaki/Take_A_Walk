@@ -52,3 +52,9 @@ body {
   background-image: url("pexels-dario-fernandez-ruz-6421668.jpg");
   background-position: bottom 30% right 5%;
 }
+.button{
+  border-radius: 50%; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
