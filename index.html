@@ -12,7 +12,7 @@
   <header
     class="container mx-auto border-0 rounded px-4 h-14 bg-gradient-to-r from-cyan-500 to-blue-500"
   >
-    <h1>Take a walk!</h1>
+    <h1>Take a Walk!</h1>
   </header>
   <body>
     <div id="floating-panel">
@@ -33,16 +33,14 @@
     </div>
     <div id="map"></div>
     <div class="btn-large mx-auto border-0 text-center">
-    <a href="mood.html" type="submit"
-    id="btn_submit"
-    class="btn-success btn-large mx-auto border-0 px-14 h-14 text-center">Set the Mood!</a>
+      <a
+        href="mood.html"
+        type="submit"
+        id="btn_submit"
+        class="btn-success btn-large mx-auto border-0 px-14 h-14 text-center"
+        >Set the Mood!</a
+      >
     </div>
-    <!-- 
-     The `defer` attribute causes the callback to execute after the full HTML
-     document has been parsed. For non-blocking uses, avoiding race conditions,
-     and consistent behavior across browsers, consider loading using Promises
-     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-    -->
     <script
       async
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoZ7XIa6-hJQXva2WtTF62LFdetLs4o_Y&callback=initMap&v=weekly"
