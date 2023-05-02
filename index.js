@@ -1,5 +1,7 @@
 //Google Maps API
+
 const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+
 
 function initMap() {
   const directionsService = new google.maps.DirectionsService(); // Setting up the map, centered on Columbia university. The future will label the data as the users location
